@@ -1,12 +1,12 @@
-# 📚 Library Management API
+#  Library Management API
 
 Backend REST API untuk sistem perpustakaan yang dibangun menggunakan **Laravel 12** dan **PostgreSQL**.
 
-## 📖 Tentang Project
+##  Tentang Project
 
 Project ini merupakan Backend REST API yang menyediakan fitur untuk mengelola data perpustakaan. API ini menggunakan Laravel Sanctum sebagai sistem autentikasi dan menerapkan Role-Based Access Control (Admin & User).
 
-## ✨ Fitur
+##  Fitur
 
 - 🔐 Login & Authentication menggunakan Laravel Sanctum
 - 👤 Manajemen User
