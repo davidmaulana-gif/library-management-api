@@ -56,43 +56,51 @@ class DatadiriController extends Controller
     public function readDatadiri()
     {
         try {
+            // Ambil id user yang sedang login
+            $userId = Auth::id();
+
+            // Ambil data user
             $data = DB::table('data_diris')
                 ->select(
                     'data_diris.nama_lengkap',
                     'data_diris.tanggal_lahir',
-                    DB::raw("
-                        CASE
-                            WHEN kelas.deleted_at IS NULL THEN kelas.kelas
-                            ELSE 0
-                        END AS kelas
-                    "),
-                    DB::raw("
-                        CASE
-                            WHEN jurusans.deleted_at IS NULL THEN jurusans.jurusan
-                            ELSE 'terhapus'
-                        END AS jurusan
-                    "),
+                    'kelas.kelas',
+                    'jurusans.jurusan',
                     'users.email'
                 )
                 ->join('kelas', 'data_diris.kelas_id', '=', 'kelas.id')
                 ->join('jurusans', 'data_diris.jurusan_id', '=', 'jurusans.id')
                 ->join('users', 'data_diris.user_id', '=', 'users.id')
-                ->where('users.id', Auth::id())
-                ->whereNull('data_diris.deleted_at')
+                ->where('data_diris.user_id', $userId)
                 ->first();
 
-            $data->umur = Carbon::parse($data->tanggal_lahir)->age;
-
+            // Cek apakah data ditemukan
             if (!$data) {
                 return response()->json([
-                    'message' => 'data diri tidak di temukan.'
+                    'status' => false,
+                    'message' => 'Data tidak ditemukan.'
                 ], 404);
             }
 
+            // Simpan ke variabel
+            $nama = $data->nama_lengkap;
+            $email = $data->email;
+            $kelas = $data->kelas;
+            $jurusan = $data->jurusan;
+            $umur = Carbon::parse($data->tanggal_lahir)->age;
+
+            // Response
             return response()->json([
                 'status' => true,
-                'data' => $data
-            ]);
+                'message' => 'Data berhasil diambil.',
+                'data' => [
+                    'nama' => $nama,
+                    'email' => $email,
+                    'umur' => $umur,
+                    'kelas' => $kelas,
+                    'jurusan' => $jurusan
+                ]
+            ], 200);
         } catch (\Exception $dataError) {
 
             return response()->json([
