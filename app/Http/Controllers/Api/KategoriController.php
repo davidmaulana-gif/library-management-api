@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Helpers\ResponseHelper;
 
 class KategoriController extends Controller
 {
@@ -17,37 +18,24 @@ class KategoriController extends Controller
             ]);
 
             $id = DB::table('kategoris')->insertGetId([
-
                 'kategori' => $request->kategori,
-
                 'created_at' => now(),
-
                 'updated_at' => now(),
             ]);
 
-            return response()->json([
-
-                'status' => true,
-
-                'message' => 'Data kategori berhasil ditambahkan.',
-
-                'data' => [
-
+            return ResponseHelper::Success(
+                'data kategori berhasil di tambahkan.',
+                [
                     'id' => $id,
                     'kategori' => $request->kategori
                 ]
-
-            ]);
+            );
         } catch (\Exception $e) {
 
             return response()->json([
-
                 'status' => false,
-
                 'pesan' => 'Gagal menambahkan data kategori.',
-
                 'error' => $e->getMessage()
-
             ], 500);
         }
     }

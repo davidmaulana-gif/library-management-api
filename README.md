@@ -8,24 +8,24 @@ Project ini merupakan Backend REST API yang menyediakan fitur untuk mengelola da
 
 ##  Fitur
 
-- 🔐 Login & Authentication menggunakan Laravel Sanctum
-- 👤 Manajemen User
-- 📄 Manajemen Data Diri
-- 🏫 Manajemen Kelas
-- 🎓 Manajemen Jurusan
-- 📚 Manajemen Buku
-- 🗂️ Manajemen Kategori Buku
-- 📥 Manajemen Peminjaman Buku
-- 📤 Manajemen Pengembalian Buku
-- 🛡️ Middleware Role (Admin & User)
-- ✅ Request Validation
-- 🗑️ Soft Delete
-- 🔍 Pencarian Data
-- 📡 RESTful API
+- Login & Authentication menggunakan Laravel Sanctum
+- Manajemen User
+- Manajemen Data Diri
+- Manajemen Kelas
+- Manajemen Jurusan
+- Manajemen Buku
+- Manajemen Kategori Buku
+- Manajemen Peminjaman Buku
+- Manajemen Pengembalian Buku
+- Middleware Role (Admin & User)
+- Request Validation
+- Soft Delete
+- Pencarian Data
+- RESTful API
 
 ---
 
-## 🛠️ Teknologi yang Digunakan
+## Teknologi yang Digunakan
 
 - PHP
 - Laravel 12
@@ -53,7 +53,7 @@ Project ini menggunakan beberapa tabel utama:
 
 ---
 
-## 🚀 Instalasi
+## Instalasi
 
 Clone repository
 
@@ -107,7 +107,7 @@ php artisan serve
 
 ---
 
-## 🔐 Authentication
+##  Authentication
 
 API menggunakan Laravel Sanctum.
 
@@ -121,7 +121,7 @@ Authorization: Bearer {token}
 
 ---
 
-## 🧪 API Testing
+##  API Testing
 
 Seluruh endpoint diuji menggunakan **Postman**.
 
